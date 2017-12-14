@@ -14,6 +14,7 @@ def populate():
     f = node(6)
     g = node(7)
     h = node(8)
+    i = node(9)
 
     a.left = b
     a.right = c
@@ -22,5 +23,6 @@ def populate():
     c.left = f
     c.right = g
     d.left = h
+    d.right = i
 
     return a

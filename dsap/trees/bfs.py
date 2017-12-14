@@ -12,7 +12,7 @@ class BFS(object):
             for i in nodes:
                 print i.data,
                 # Todo: Make sure you append only if the child is present else you'll
-                # Todo: have array with None.
+                # Todo: have array with None values.
                 if i.left:
                     temp.append(i.left)
                 if i.right:
