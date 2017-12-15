@@ -7,12 +7,11 @@ class Node(object):
 
 class LinkedListStack(object):
 
-    '''
-
-    Its easier to push/extend from head because
+    """
+    Its easier to push/extend/grow from head because
     when you pop you need to maintain a previous pointer
-    pointer
-    '''
+    pointer otherwise.
+    """
     def __init__(self):
         self.head = None
 

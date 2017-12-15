@@ -6,10 +6,12 @@ class Node(object):
 
 
 class LinkedListQueue(object):
-    '''
+    """
     Note the difference in how you grow the linked list
-    between queue and stack
-    '''
+    between queue and stack.
+
+    In queue you just grow the tail.
+    """
     def __init__(self):
         self.head = None
         self.tail = None

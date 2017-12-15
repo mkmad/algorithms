@@ -1,10 +1,7 @@
 import populate_tree
 
 
-class Treetraversals(object):
-
-    def __init__(self):
-        pass
+class DFStreetraversals(object):
 
     def preorder(self, node):
         if node:
@@ -33,5 +30,35 @@ class Treetraversals(object):
         self.preorder(root)
         print '\nIn order'
         self.inorder(root)
-        print '\n Post order'
+        print '\nPost order'
         self.postorder(root)
+
+    def dfs_iterative(self):
+        """
+        I need two arrays for this, one for path and
+        one for visited.
+        """
+        print '\nIterative Post order'
+        root = self.get_root()
+        if root:
+            path = [root]
+            visited = []
+            while path:
+                cur = path[-1]
+                if cur.left and cur.left not in visited:
+                    path.append(cur.left)
+                    visited.append(cur.left)
+                    continue
+                if cur.right and cur.right not in visited:
+                    path.append(cur.right)
+                    visited.append(cur.right)
+                    continue
+                else:
+                    print cur.data,
+                    path.pop()
+
+
+if __name__ == '__main__':
+    t = DFStreetraversals()
+    t.print_()
+    t.dfs_iterative()

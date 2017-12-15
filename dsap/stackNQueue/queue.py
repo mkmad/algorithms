@@ -24,6 +24,12 @@ class Queue(object):
     def print_queue(self):
         print self.myQueue
 
+    def is_empty(self):
+        if not self.myQueue or self.head > len(self.myQueue) - 1:
+            return True
+        else:
+            return False
+
 
 
 

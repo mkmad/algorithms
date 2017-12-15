@@ -1,9 +1,15 @@
 class CircularQueue(object):
 
-    '''
+    """
 
     This queue will only take in a limited number of
-    values. We need two pointers a head and a tail.
+    values, because if we simply keep inserting the values
+    then there is no point in wrapping around.
+    To help with this we need two pointers a head and a tail.
+
+    On the other hand we can do enqueue with resize, this
+    will ensure there are fixed number of values and we know
+    when the head/tail will wrap around.
 
     We enqueue using the head and dequeue using the
     tail. Both tail and head will wrap around.
@@ -17,7 +23,7 @@ class CircularQueue(object):
     both are 0, since both the values are wrapping
     around and we don't know.
 
-    '''
+    """
 
     def __init__(self):
         self.Queue_size = 10

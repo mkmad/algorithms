@@ -1,10 +1,13 @@
 class DoubleEndedQueue(object):
 
-    '''
+    """
+    Maintain two stacks, one for enqueue from front
+    and one for enqueue from back.
+
     Be careful of the array indices, especially
     when the array is not initialized
 
-    '''
+    """
     def __init__(self):
         self.front_queue = []
         self.back_queue = []

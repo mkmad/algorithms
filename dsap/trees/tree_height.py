@@ -16,3 +16,16 @@ class Height(object):
     def get_height(self):
         root = populate_tree.populate()
         print 'Height: {0}'.format(self.height(root))
+
+    def node_depth(self, node):
+        """
+        Height of a node is max of all the heights of its children
+        Depth of a node is the the number of ancestors it has.
+
+        So, to implement depth the node should also have the parent
+        pointer
+        """
+        if node:
+            return 1 + self.node_depth(node.parent)
+        else:
+            return 0

@@ -7,6 +7,10 @@ class Node(object):
 
 class CircularLinkedList(object):
 
+    """
+    You enqueue in the tail and dequeue from head
+    """
+
     def __init__(self):
         self.head = None
         self.tail = None
@@ -27,7 +31,7 @@ class CircularLinkedList(object):
         if not self.head:
             raise Exception('Queue empty')
         res = self.head.data
-        '''
+        """
         If there is a single element in the queue
         and if you do 
         
@@ -44,7 +48,7 @@ class CircularLinkedList(object):
         next of that old obj is still pointing to another
         old obj so when you dequeue you'll still be getting
         all old objs
-        '''
+        """
 
         if self.head.next is self.head:
             self.tail.next = None
