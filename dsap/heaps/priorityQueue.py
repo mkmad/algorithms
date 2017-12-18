@@ -1,7 +1,12 @@
 from build_heap import BuildHeap as bh
 
 
-class MinHeap(object):
+class PriorityQueue(object):
+    """
+    This is the same code as heap, instead of inserting
+    values, I am inserting nodes and expect each node
+    has a value associated with it.
+    """
 
     def __init__(self):
         self.myHeap = []
@@ -33,17 +38,17 @@ class MinHeap(object):
         if index <= len(self.myHeap) - 1:
             return index
 
-    def get_small_child(self, node):
+    def get_small_child(self, index):
         """
         Its safe to assume that if a node has child/children
         it will always fill the left child first.
         """
-        left = self.get_left_child(node)
-        right = self.get_right_child(node)
+        left = self.get_left_child(index)
+        right = self.get_right_child(index)
         small = None
         if left:
             small = left
-            if right and self.myHeap[right] < self.myHeap[left]:
+            if right and self.myHeap[right].data < self.myHeap[left].data:
                 small = right
         return small
 
@@ -57,7 +62,7 @@ class MinHeap(object):
         to satisfy parent <= children
         """
         if index and not index > len(self.myHeap) -1:
-            if self.myHeap[index] < self.myHeap[self.get_parent(index)]:
+            if self.myHeap[index].data < self.myHeap[self.get_parent(index)].data:
                 self.swap(index, self.get_parent(index))
                 self.upheap(self.get_parent(index))
 
@@ -71,16 +76,13 @@ class MinHeap(object):
         if not index > len(self.myHeap) -1:
             small = self.get_small_child(index)
             # Todo: I missed this condition, so be carefull
-            if small and self.myHeap[index] > self.myHeap[small]:
+            if small and self.myHeap[index].data > self.myHeap[small].data:
                 self.swap(index, small)
                 self.downheap(small)
 
     def get_min(self):
         if self.myHeap:
             return self.myHeap[0]
-
-    def get_min_data(self):
-        return self.get_min().data
 
     def remove_min(self):
         """
@@ -101,13 +103,13 @@ class MinHeap(object):
         else:
             raise Exception('Empty Heap')
 
-    def insert(self, val):
+    def insert(self, node):
         """
         Insert in the last node and call upheap on that
         """
-        self.myHeap.append(val)
+        self.myHeap.append(node)
         if len(self.myHeap) > 1:
             self.upheap(len(self.myHeap) - 1)
 
     def initialize_heap(self):
-        self.myHeap = bh().build_val_heap()
+        self.myHeap = bh().build_node_heap()
