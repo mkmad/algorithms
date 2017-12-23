@@ -40,6 +40,7 @@ class TriNodeRestructuring(object):
                             p.left = y
                         else:
                             p.right = y
+                    return y
 
                 elif x is y.right:
                     self.left_rotation(x, y)
@@ -53,6 +54,7 @@ class TriNodeRestructuring(object):
                             p.left = x
                         else:
                             p.right = x
+                    return x
 
             elif y is z.right:
 
@@ -67,6 +69,7 @@ class TriNodeRestructuring(object):
                             p.left = y
                         else:
                             p.right = y
+                    return y
 
                 elif x is y.left:
                     self.right_rotation(x, y)
@@ -80,6 +83,7 @@ class TriNodeRestructuring(object):
                             p.left = x
                         else:
                             p.right = x
+                    return x
         else:
             if y:
                 if x is y.left:
@@ -90,6 +94,7 @@ class TriNodeRestructuring(object):
                 # TODO: Update root pointer
                 if y is self.root:
                     self.root = x
+                return x
             else:
                 return
 

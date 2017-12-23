@@ -26,18 +26,23 @@ class BSTOperations(object):
             raise Exception('Need a value')
 
     def insert_node(self, node, root):
+        """
+        make sure to update the node's parent pointer as well
+        """
         if root:
             if node.data < root.data:
                 if root.left:
                     self.insert_node(node, root.left)
                 else:
                     root.left = node
+                    node.parent = root
                     return
             else:
                 if root.right:
                     self.insert_node(node, root.right)
                 else:
                     root.right = node
+                    node.parent = root
         else:
             # TODO: IMP!!!, I used root = node here, since I was calling
             # TODO: insert_node with self.root I assumed that when I change
@@ -45,10 +50,13 @@ class BSTOperations(object):
             # TODO: self.root gives its reference to root, when I do
             # TODO: root = someObj, I change the reference of root and not
             # TODO: self.root so self.root is still pointing to the old obj
+            # TODO: This happens because both self.root and root point to the
+            # TODO: same obj at first, when you assign root = node then root
+            # TODO: changes its pointer, while self.root doesn't
             self.root = node
             return
 
-    def delete(self, val):
+    def delete(self, val, root):
         """
         Delete has 3 cases:
 
@@ -65,7 +73,7 @@ class BSTOperations(object):
         you are just setting the pointer to None. The parent might
         still be pointing to the old node
         """
-        node, parent = self.find_node(val, self.root)
+        node, parent = self.find_node(val, root)
         if node:
 
             # If node has no children
@@ -75,6 +83,7 @@ class BSTOperations(object):
                         parent.left = None
                     else:
                         parent.right = None
+                    return parent
                 else:
                     # If node has no parent, then its the root
                     self.root = None
@@ -88,6 +97,7 @@ class BSTOperations(object):
                     succ_parent.left = None
                 else:
                     succ_parent.right = None
+                return succ_parent
 
             # Node has only one child
             elif node.right:
@@ -97,6 +107,7 @@ class BSTOperations(object):
                         parent.left = node.right
                     else:
                         parent.right = node.right
+                    return parent
                 else:
                     # Has to be root, if it has no parent
                     self.root = node.right
@@ -109,6 +120,7 @@ class BSTOperations(object):
                     Thereby the self.root pointer remains
                     untouched
                     """
+                    return self.root
 
             # Same as above, in the other direction
             else:
@@ -117,8 +129,10 @@ class BSTOperations(object):
                         parent.left = node.left
                     else:
                         parent.right = node.left
+                    return parent
                 else:
                     self.root = node.left
+                    return self.root
 
         else:
             raise Exception('Node not found')
