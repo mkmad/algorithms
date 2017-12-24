@@ -107,6 +107,13 @@ class TriNodeRestructuring(object):
             a.left = b
             b.right = None
 
+        # TODO: Update the parent's reference to a
+        if b.parent:
+            if b is b.parent.left:
+                b.parent.left = a
+            else:
+                b.parent.right = a
+
         # TODO: Make sure to update the parent of a and b
         a.parent = b.parent
         b.parent = a
@@ -119,6 +126,13 @@ class TriNodeRestructuring(object):
         else:
             a.right = b
             b.left = None
+
+        # TODO: Update the parent's reference to a
+        if b.parent:
+            if b is b.parent.left:
+                b.parent.left = a
+            else:
+                b.parent.right = a
 
         # TODO: Make sure to update the parent of a and b
         a.parent = b.parent

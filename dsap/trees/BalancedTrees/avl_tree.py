@@ -218,9 +218,3 @@ if __name__ == '__main__':
     print '\n\nDeleting h -> 1'
     avl.delete(1)
     avl.print_tree()
-
-
-
-
-
-
