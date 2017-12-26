@@ -9,7 +9,7 @@ class AVL(object):
     """
     AVL property: ht of a node is max(ht of left child, ht of right child)
 
-    Insert: Insert like bst, after that yoy need to recalculate
+    Insert: Insert like bst, after that you need to recalculate
     the heights. You do that by calculating the heights of all the
     node's ancestors (parents). After recalculating, check for avl
     violations up the ancestor chain all the way upto root.
@@ -78,7 +78,7 @@ class AVL(object):
            so, that child will be z
 
         2) node just has a single child, and if the node is in violation
-           that child's height will be atleat 2 (since the empty child has
+           then the child's height will be atleat 2 (since the empty child has
            height 0). The node's child will be y. We can also be sure that
            y will atleast have one child of its own (only then its
            height will be atleast 2)
@@ -147,9 +147,10 @@ class AVL(object):
                 # the heights of the grand children of subtree_root
                 # and thereby updating the children and subtree_root's
                 # height
+
                 # Also note, the height of subtree_root will be updated
                 # twice as recalculate_heights will propagate upwards twice
-                # (once for each child)
+                # (once for each child) all the way upto the root
                 self.recalculate_heights(subtree_root.left)
                 self.recalculate_heights(subtree_root.right)
 

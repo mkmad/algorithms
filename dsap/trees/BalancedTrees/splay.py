@@ -5,7 +5,35 @@ from mycode.dsap.trees import populate_tree as pt
 class SplayTree(object):
 
     """
-    Refer to page 490, its pretty straightforward
+    There are three cases when we perform splay operation:
+
+    1) When we search for a key. I we find it then perform
+       splay on that node, if its unsuccessful then splay on
+       the leaf node where search terminated.
+
+    2) When we insert a new node, we splay on that node
+
+    3) When we delete a node, we have 3 more cases:
+       1) we splay on the parent node if this was a leaf node
+       2) we splay on the child node, if it had only one child
+       3) We splay on the parent of the successor node if this
+          node had 2 children
+
+       Note: We do the splaying after we remove the node of course
+
+
+    Tri node restructuring is a little different for zig-zig case:
+
+       x                      z
+        \                    /
+         y        ->        y
+          \                /
+           z              x
+
+    and vise-versa on the other direction
+
+    for zig-zag its same as AVL tree
+
     """
     def __init__(self):
         self.root = None
