@@ -1,7 +1,7 @@
 class SelectionSort(object):
 
     def __init__(self):
-        self.values = [3, 2, 6, 8, 4, 9, 1, 7]
+        self.values = [3, 2, 6, -8, 4, 9, 1, 7]
 
     def swap(self, a, b):
         self.values[a], self.values[b] = \

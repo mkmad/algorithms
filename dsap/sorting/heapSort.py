@@ -9,7 +9,7 @@ class HeapSort(object):
     """
 
     def __init__(self):
-        self.val_heap = [4, 5, 3, 6, 7, 2, 9, 3]
+        self.val_heap = [4, 5, 3, -6, 7, 2, 9, 3]
         self.obj_heap = []
         self.limit = len(self.val_heap) - 1
 

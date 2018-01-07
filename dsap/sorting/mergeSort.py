@@ -87,7 +87,7 @@ class MergeSort(object):
 
 
 if __name__ == '__main__':
-    a = [4, 7, 2, 3, 6, 1]
+    a = [4, -7, 2, 3, 6, 1]
     ms = MergeSort(a)
     ms.merge_sort(a)
     print a
