@@ -100,6 +100,7 @@ class BuildHeap(object):
 
         temp = deepcopy(self.val_heap)
         # call downheap with isObj=False
+        # Note, iteration starts from len(temp) all the way to -1
         for val in range(len(temp), -1, -1):
             self.downheap(val, temp, isObj=False)
         return temp
@@ -120,9 +121,25 @@ class BuildHeap(object):
             temp_obj.append(self.Node(val))
 
         # call downheap with isObj=True
+        # Note, iteration starts from len(temp) all the way to -1
         for val in range(len(temp_obj), -1, -1):
             self.downheap(val, temp_obj, isObj=True)
         return temp_obj
+
+    # Used for huffman coding
+    def build_heap(self, heap):
+        # TODO: Note how you call downheap from last index down to first index
+        """
+        You could say that the run time is nlog(n) but a tighter bound
+        is o(n) since n is not the same for each iteration.
+        """
+        # TODO: ^^
+
+        # call downheap with isObj=True
+        # Note, iteration starts from len(temp) all the way to -1
+        for val in range(len(heap), -1, -1):
+            self.downheap(val, heap, isObj=True)
+        return heap
 
 
 if __name__ == '__main__':
