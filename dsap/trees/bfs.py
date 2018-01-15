@@ -3,6 +3,12 @@ from mycode.dsap.stackNQueue.queue import Queue as qq
 
 
 class BFS(object):
+    """
+    The difference between iterative and recursive bfs are:
+    1) In recursive you create a new array for every recursion
+    2) In iteration, you use a queue because you can pop and insert
+       values in the queue inside the while loop
+    """
 
     def __init__(self):
         self.queue = qq()
