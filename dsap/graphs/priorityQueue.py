@@ -1,5 +1,3 @@
-from build_heap import BuildHeap as bh
-
 
 class PriorityQueue(object):
     """
@@ -75,7 +73,7 @@ class PriorityQueue(object):
         Called when inserting, basically bubble the inserted node upward
         to satisfy parent <= children
         """
-        if index and not index > len(self.myHeap) - 1:
+        if index and not index > len(self.myHeap) -1:
             if self.myHeap[index].data < self.myHeap[self.get_parent(index)].data:
                 self.swap(index, self.get_parent(index))
                 self.upheap(self.get_parent(index))
@@ -159,12 +157,3 @@ class PriorityQueue(object):
             if parent:
                 if value < self.myHeap[parent].data:
                     self.upheap(self.location[vertex])
-
-    def initialize_heap(self):
-        self.myHeap = bh().build_node_heap()
-
-        # Storing the location of each node, I use this
-        # in prims
-        for index, val in enumerate(self.myHeap):
-            if val.label:
-                self.location[val.label] = index

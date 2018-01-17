@@ -15,6 +15,7 @@ class BuildHeap(object):
     class Node(object):
         def __init__(self, data):
             self.data = data
+            self.label = None
 
     @staticmethod
     def get_parent(index):
