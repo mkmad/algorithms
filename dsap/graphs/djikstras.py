@@ -1,53 +1,17 @@
 from priorityQueue import PriorityQueue
 
 
-class PrimsMinimumSpaningTree(object):
+class Djikstraks(object):
 
     """
-    Goal is to find the minimum spanning tree of
-    a weighted undirected graph
+    Goal is to find single source shortest path
+    to all the other vertices
 
-    Algorithm is pretty straightforward, for every vertex
-    check which of it neighbours has the least weighted
-    edge, pick that edge (it will be part of the minimum
-    spanning tree) and move to that vertex and repeat the
-    same
+    Its exactly same as prims algorithm. The only difference is
+    when we calculate the distance to a vertex, its the some of
+    the distance of min vertex to the neighbour and source vertex
+    to min vertex
 
-
-    Some optimizations:
-
-    When we explore the neighbours of
-    a vertex, we need to record the weights to determine
-    which edge has the least weight. Hence a priority queue
-    makes sense here, we can have the vertices as keys and
-    weights as values, this will also help in extracting/remove
-    min in constant time.
-
-    After we remove min, we need a record of which edge goes in
-    the final spanning tree, for this we use a discovered map.
-    This map is updated at the same time we record the weights
-    of the neighbours in the priority queue. So, when we do a
-    extract/remove min we look at the discovered map to find out
-    which edge was responsible for this min value and add it to
-    the final result
-
-    The last optimization is to make sure when the vertex is
-    looking at all its neighbours (to calculate weight) it
-    doesn't consider the edges that are already part of the
-    spanning tree, for this we need to modify the priority queue
-    so that it supports a contains operation. This can be
-    achieved by internally having a map in the priority queue
-    that stores the location (index) of the vertices in the queue.
-    We can now refer to this map to find if the vertex exists in
-    the queue and if does consider that vertex (because when we do
-    extract min, we remove the min vertex and that becomes part of
-    the spanning tree - we don't want to look at this vertex again)
-
-    Also note, the internal map can also be an internal array if we
-    just want to find out if a given vertex exists in the queue or not.
-    However, having a map will also help us in update operations of
-    vertices (remember we keep updating the value of the vertices
-    in the queue)
     """
 
     class Node(object):
@@ -58,6 +22,7 @@ class PrimsMinimumSpaningTree(object):
     def __init__(self):
         self.pq = PriorityQueue()
         self.discovered = {}
+        self.distance = {}
         self.res = []
 
     def build_priority_queue(self, graph):
@@ -72,7 +37,7 @@ class PrimsMinimumSpaningTree(object):
             self.pq.location[vertices] = index
             index += 1
 
-    def prim(self, graph):
+    def djikstras(self, graph):
         """
         Remove the minimum weight vertex from the heap and check its
         neighbours. If the weight from the minimum vertex to its
@@ -81,6 +46,9 @@ class PrimsMinimumSpaningTree(object):
 
         Also, update the discovered dict, saying you reached the neighbour
         from this vertex
+
+        Update the distance also, he distance is the sum of the distance
+        from source to min node and the distance from min node to the neighbour
         """
         if self.pq.myHeap:
 
@@ -99,23 +67,25 @@ class PrimsMinimumSpaningTree(object):
                     if weight < self.pq.myHeap[self.pq.location[neighbour]].data:
                         self.pq.update(neighbour, weight)
                         self.discovered[neighbour] = min_node.label
+                        self.distance[neighbour] = self.distance[min_node.label] + weight
 
-            edge = '{0} -> {1}'.format(self.discovered[min_node.label],
-                                       min_node.label)
-            self.res.append(edge)
-            self.prim(graph)
+            self.djikstras(graph)
 
     def main(self, graph, start='A'):
         """
         Note: The data value of the start vertex should be 0, as this
         will make sure we remove the start vertex first (since every other
         vertex is inf)
+
+        The distance of the start vertex is set to 0 as well
         """
         self.build_priority_queue(graph)
         self.pq.myHeap[self.pq.location[start]].data = 0
         self.discovered[start] = None
-        self.prim(graph)
-        print self.res
+        self.distance[start] = 0
+        self.djikstras(graph)
+        print self.discovered
+        print self.distance
 
 
 if __name__ == '__main__':
@@ -153,5 +123,5 @@ if __name__ == '__main__':
         }
     }
 
-    p = PrimsMinimumSpaningTree()
-    p.main(graph, start='A')
+    d = Djikstraks()
+    d.main(graph, start='A')
