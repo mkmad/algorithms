@@ -1,7 +1,12 @@
+import copy
+
+
 class BSTSequences(object):
 
     def __init__(self):
         self.root = None
+        self.res = []
+        self.nodes_lvl_by_lvl = []
 
     class Node(object):
         def __init__(self):
@@ -38,11 +43,66 @@ class BSTSequences(object):
         a[:2] + a[3:] -> 'moan'
 
         """
-        for i in range(len(array_)):
-            yield (array_[i], array_[:i] + array_[i + 1:])
 
-    def generate_permutations(self):
-        pass
+        for i in range(len(array_)):
+            yield array_[i], array_[:i] + array_[i + 1:]
+
+    def generate_permutations(self, array_, picked=''):
+        """
+        Generating permutation is pretty straightforward
+
+        At any given level of the permutation tree you
+        have a list of choices (children). You need to
+        pick one of them and generate permutations for
+        the rest of the choices (this is where the
+        select_val_from_sequences function comes into play)
+
+        Note:
+
+        You need to careful of unpicking the child
+        after the control returns. Basically you are saying:
+        I picked a child, generated the permutations and now
+        I putting the child back into the pool and selecting
+        another child. This is done to ensure that the child
+        doesn't stay back in the result array/string after its
+        turn
+
+        Note:
+
+        Initially, I thought of returning the values up the
+        recursion chain, this is easier if you are tracking a
+        single path (of the recursive chain) or if you have one
+        or two branches. But here I have so many branches in each
+        level and keeping track of all these is a pain. Hence I
+        decided to send the 'picked string' down the chain (since
+        the natural path of recursion is top to bottom, it makes
+        it easier). Also, I could have sent an array instead of
+        string but then I would have to create a new array for
+        every level due to pass by reference property of array
+
+        """
+        if not array_:
+            self.res.append(list(picked))
+
+        # select_val_from_sequences returns a list of
+        # tuples thats of the form:
+        # (child_picked, list of remaining children)
+        for val in self.select_val_from_sequences(array_):
+            # Pick the child
+            picked = picked + str(val[0])
+            self.generate_permutations(val[1], picked=picked)
+            # Unpick the child
+            # I could have also done picked[:-1]
+            picked = picked[: len(picked) - 1]
+
+    def permutation_demo(self, array_):
+        print 'Permutation Demo'
+        print '\nArray is:'
+        print array_
+        print
+        self.generate_permutations(array_)
+        for val in self.res:
+            print val
 
     def select_val_from_sequences_demo(self, array_):
         print '\nArray is:'
@@ -53,6 +113,24 @@ class BSTSequences(object):
             print 'Selecting {0}'.format(val[0])
             print val[1]
             print
+
+    def bst_sequences(self):
+        self.res = []
+        res_ = {}
+        lvl = 0
+        for val in self.nodes_lvl_by_lvl:
+            if len(val) > 1:
+                self.generate_permutations(val)
+                res_t = copy.deepcopy(self.res)
+                self.res = []
+                res_[lvl] = res_t
+                lvl += 1
+            else:
+                res_[lvl] = val
+                lvl += 1
+
+        print '\nBst sequences at every level'
+        print res_
 
     def populate_tree(self, a, root):
         """
@@ -99,21 +177,25 @@ class BSTSequences(object):
 
     def bfs(self, nodes=[]):
         """
-        Used just to print the tree
+        Used just to print the tree and fetching nodes on a
+        level by level basis
         """
         if nodes:
             temp = []
+            nodes_ = []
             for i in nodes:
                 # This is a hack to insert a unbalanced node
                 # as the populate_tree algorithm always creates
                 # a balanced node
                 print i.data,
+                nodes_.append(i.data)
                 # Todo: Make sure you append only if the child is present else you'll
                 # Todo: have array with None values.
                 if i.left:
                     temp.append(i.left)
                 if i.right:
                     temp.append(i.right)
+            self.nodes_lvl_by_lvl.append(nodes_)
             self.bfs(temp)
 
     def print_tree(self):
@@ -122,6 +204,9 @@ class BSTSequences(object):
 
 if __name__ == '__main__':
     b = BSTSequences()
-    inp = [1, 2, 3, 4, 5, 6, 7, 8]
+    inp = [1, 2, 3]
     b.populate_tree(inp, None)
+    b.print_tree()
     b.select_val_from_sequences_demo(inp)
+    b.permutation_demo(inp)
+    b.bst_sequences()

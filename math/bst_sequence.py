@@ -6,4 +6,6 @@ def permu(xs):
             for p in permu(xs[:i] + xs[i + 1:]):
                 yield [xs[i]] + p
 
-print list(permu([4,5,6]))
+
+if __name__ == '__main__':
+    print list(permu([4, 5, 6]))
