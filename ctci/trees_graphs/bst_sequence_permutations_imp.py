@@ -105,9 +105,9 @@ class BSTSequences(object):
             print val
 
     def select_val_from_sequences_demo(self, array_):
+        print '\n\nDemo of Selecting values from the array:'
         print '\nArray is:'
         print array_
-        print '\nDemo of Selecting values from the array:'
         print
         for val in self.select_val_from_sequences(array_):
             print 'Selecting {0}'.format(val[0])
@@ -184,9 +184,6 @@ class BSTSequences(object):
             temp = []
             nodes_ = []
             for i in nodes:
-                # This is a hack to insert a unbalanced node
-                # as the populate_tree algorithm always creates
-                # a balanced node
                 print i.data,
                 nodes_.append(i.data)
                 # Todo: Make sure you append only if the child is present else you'll
@@ -199,6 +196,7 @@ class BSTSequences(object):
             self.bfs(temp)
 
     def print_tree(self):
+        print '\nBst traversal of the tree:'
         self.bfs([self.root])
 
 
