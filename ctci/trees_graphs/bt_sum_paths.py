@@ -23,9 +23,9 @@ class SumPaths(object):
                 /   \
                5    -3
               /   \   \
-             3    1   10
+             3    2   10
             / \    \
-           3  -2    2
+           3  -2    1
         """
 
         n1 = self.Node()
@@ -64,7 +64,7 @@ class SumPaths(object):
         n4.right = n8
 
         n9 = self.Node()
-        n9.data = 2
+        n9.data = 1
 
         n5.right = n9
 
