@@ -2,6 +2,21 @@ import copy
 
 
 class PowerSet(object):
+    """
+    The set of all the subsets of a set
+
+    Example: For the set {a,b,c}:
+
+        The empty set {} is a subset of {a,b,c}
+        And these are subsets of len 1: {a}, {b} and {c}
+        And these are also subsets (len 2): {a,b}, {a,c} and {b,c}
+        And {a,b,c} is a subset of {a,b,c}
+
+    And altogether they make the Power Set:
+
+    P(S) = { {}, {a}, {b}, {c}, {a,b}, {a,c}, {b,c}, {a,b,c} }
+
+    """
 
     def __init__(self):
         self.power_set = []

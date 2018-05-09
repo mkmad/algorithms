@@ -1,0 +1,1 @@
+# refer to /Users/mkmad/projects/CtCI-6th-Edition/mycode/ctci/recursion_dp/eight_queens.py
