@@ -50,7 +50,9 @@ class Fitbits(object):
         # 1 being push no_of_bits times will create
         # 100000.., so I I negate 1 from the value then
         # the remaining will be 11111.... (with the same
-        # length as n)
+        # length as n because the 1 is pushed to the no_of_bits
+        # position in a o indexed bin representation i.e its
+        # sitting in the no_of_bits + 1 th position)
         mask1 = (1 << no_of_bits) - 1
 
         """
@@ -83,6 +85,21 @@ class Fitbits(object):
         leftmost value is technically 0's so if you
         perform & operation all those values in the 
         left of the number will be set to 0
+        
+        
+        bin(((1 << 11 + 1) - 1) << 7)[2:] = 1111111111110000000
+        4095 == 111111111111
+        
+        the & will look like this
+        
+        1111111111110000000
+        &
+        0000000111111111111
+        
+        == 111110000000
+        
+        Note: you typically perform the & on the same number to restrict
+        the bits ie mask1 
 
         """
         mask1 = mask1 & (mask1 << j + 1)
