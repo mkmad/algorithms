@@ -1,6 +1,10 @@
 class MinCoins(object):
 
     """
+    Given a total, and a set of unlimited denominations of coins
+    what is the minimum number of coins that's required to get
+    the total
+
     This is similar to subset sum, I have padding on both
     the first column and the first row. The only difference
     here is if the col is <= coins[row] then select the
@@ -45,18 +49,21 @@ class MinCoins(object):
         # column
         for row in range(1, len(self.coins) + 1):
             for col in range(1, len(self.matrix[0])):
+                # row - 1 because row values goes 1 above the len(self.coins)
                 if self.coins[row - 1] <= col:
                     # Don't take min for the 1st row
                     # Also note, its the 1st row not 0th
                     if row == 1:
                         self.matrix[row][col] = 1 + self.matrix[row][(col - self.coins[row - 1])]
-                    # For all other rows get the min value
+                    # For all other rows get the min value either from top or
+                    # picking the coin
                     else:
                         self.matrix[row][col] = min(
                             1 + self.matrix[row][(col - self.coins[row - 1])],
                             self.matrix[row - 1][col]
                         )
                 else:
+                    # just get the value from top
                     self.matrix[row][col] = self.matrix[row - 1][col]
 
         print "\nAfter"
