@@ -3,6 +3,22 @@ import copy
 
 class BSTSequences(object):
 
+    """
+    BST was created by traversing through an array from
+    left to right and inserting each element. Given a bst
+    with distinct element print all possible arrays that
+    could have led to this tree
+
+        eg:
+
+                    1
+                  /   \
+                2      3
+
+        Output: [2, 1, 3] and [2, 3, 1]
+
+    """
+
     def __init__(self):
         self.root = None
         self.res = []
@@ -61,9 +77,10 @@ class BSTSequences(object):
 
         You need to careful of unpicking the child
         after the control returns. Basically you are saying:
-        I picked a child, generated the permutations and now
-        I putting the child back into the pool and selecting
-        another child. This is done to ensure that the child
+        At every node of the tree I picked a child (a branch),
+        generated the permutations and now I am putting the child
+        back into the pool (i.e selecting a different branch i.e.
+        selecting another child). This is done to ensure that the child
         doesn't stay back in the result array/string after its
         turn
 
@@ -83,10 +100,14 @@ class BSTSequences(object):
         """
         if not array_:
             self.res.append(list(picked))
+            return
 
         # select_val_from_sequences returns a list of
-        # tuples thats of the form:
+        # tuples that's of the form:
         # (child_picked, list of remaining children)
+
+        # TODO: This for loop selects different branches from
+        # TODO: the current node
         for val in self.select_val_from_sequences(array_):
             # Pick the child
             picked = picked + str(val[0])

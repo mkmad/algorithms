@@ -50,6 +50,11 @@ class RandomNode(object):
         number in the right tree instead of the very next node to
         root
 
+        This algorithm works because each node has the size of the
+        subtree rooted at that node, so it knows how many left nodes
+        and right nodes are there and the rand num is checked against
+        the size of the sub tree
+
         """
         if root:
             if rand <= root.left_size:

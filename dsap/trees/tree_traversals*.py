@@ -36,7 +36,10 @@ class DFStreetraversals(object):
     def dfs_iterative(self):
         """
         I need two arrays for this, one for path and
-        one for visited.
+        one for visited. The path acts as a stack that
+        will help in returning to the node and the visited
+        array will help in moving to the correct node
+        and avoiding the nodes we already discovered
         """
         print '\nIterative Post order'
         root = self.get_root()

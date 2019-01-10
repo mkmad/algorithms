@@ -1,6 +1,9 @@
 class Kadanes(object):
 
     """
+    The goal is to find maximum sum sub array using the snail
+    or the worm approach
+
     Iterate through the array and maintain a running sum,
     if the current val > current val + running sum then there
     is no point in adding the current val in the running sum(
@@ -37,4 +40,7 @@ class Kadanes(object):
 
 if __name__ == '__main__':
     k = Kadanes()
-    print k.max_sub_array([-5, 6, 7, 1, 4, -8, 16])
+    res = k.max_sub_array([-5, 6, 7, 1, 4, -8, 16])
+
+    print res
+    print res[max(res.keys())]

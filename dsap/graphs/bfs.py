@@ -38,6 +38,15 @@ class BFS(object):
             self.bfs(vertices=neighbours, visited=visited)
             return visited
 
+    def bfs_bst(self, root):
+        queue = []
+
+        queue.append(root)
+
+        while queue:
+            temp = []
+
+
 
 if __name__ == '__main__':
 

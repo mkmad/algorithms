@@ -1,6 +1,10 @@
 class CoinDenominations(object):
 
     """
+
+    NOTE: This is a MEMOIZATION problem
+
+
     Coins: Given an infinite number of quarters
     (25 cents), dimes (10 cents), nickels (5 cents),
     and pennies (1 cent), write code to calculate the
