@@ -1,6 +1,6 @@
 from trinode_restructuring import TriNodeRestructuring as tri
-from mycode.dsap.trees.bst_operations import BSTOperations as bsto
-from mycode.dsap.trees import populate_tree as pt
+from dsap.trees.bst_operations import BSTOperations as bsto
+from dsap.trees import populate_tree as pt
 
 import math
 

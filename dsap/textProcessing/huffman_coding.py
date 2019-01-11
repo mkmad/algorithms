@@ -1,8 +1,39 @@
-from mycode.dsap.heaps.priorityQueue import PriorityQueue as pq
-from mycode.dsap.heaps.build_heap import BuildHeap as bh
+from dsap.heaps.priorityQueue import PriorityQueue as pq
+from dsap.heaps.build_heap import BuildHeap as bh
 
 
 class HuffmanCoding(object):
+
+    """
+    Huffman coding is a data compression algorithm, it compresses
+    data in a loss less form.
+
+    The algorithm takes a list of words and its frequencies.
+    The frequencies become the data in the priority
+    queue node. The actual word itself is the label of the node
+
+    The algorithm takes all the nodes and puts it into a priority
+    heap, extract min is done twice and a new node is created such
+    that the data = min1.data + min2.data. New node's left = min1 and
+    right = min2. This new node is again put back into the priority
+    queue
+
+    The above step is repeated until there is only one element in the
+    priority queue (i.e. only min1 exists). Return the last node
+
+    The actual huffman coding is done by traversing the tree created
+    above, if you go left its 0 and if you go right its 1
+
+    Note: only the leaf nodes will actually contain the words (node
+    with label). All the other nodes will only have values (the
+    combined frequencies). So, traversing the tree for a word will
+    result in going to a left node, witch in turn will result in the
+    huffman code
+
+    For info on how the actual bits are compressed checkout
+    https://www.youtube.com/watch?v=dM6us854Jk0
+
+    """
 
     class Node(object):
         def __init__(self, data):
@@ -21,7 +52,7 @@ class HuffmanCoding(object):
             'galaxy': 3
         }
 
-    def build_heap(self):
+    def build_node_lists(self):
         heap = []
 
         for k, v in self.frequency.items():
@@ -32,28 +63,16 @@ class HuffmanCoding(object):
         return heap
 
     def build_huffman_tree(self):
+
         """
-        The algorithm takes a list of words and its frequencies
-        in a text. The frequencies become the data in the priority
-        queue node. The actual word itself can be label of the node
+        Remove nodes from the priority queue and
+        make a new sub tree and insert the root of
+        the subtree back into the queue
 
-        The algorithm takes all the nodes and puts it into a priority
-        heap, extract min is done twice and a new node is created such
-        that the data = min1.data + min2.data. New node's left = min1 and
-        right = min2. This new node is again put back into the priority
-        queue
-
-        The above step is repeated until there is only one element in the
-        priority queue (i.e. only min1 exists). Return the last node
-
-        The actual huffman coding is done by traversing the tree created
-        above, if you go left its 0 and if you go right its 1
-
-        Note: only the leaf nodes will actually contain the words (node
-        with label). All the other nodes will only have values (the
-        combined frequencies). So, traversing the tree for a word will
-        result in going to a left node, witch in turn will result in the
-        huffman code
+        If there more than one node in the priority
+        queue then continue the process else if there
+        is only one node left then that's the root
+        of the master tree so return that
 
         """
 
@@ -86,7 +105,7 @@ class HuffmanCoding(object):
 if __name__ == '__main__':
     hc = HuffmanCoding()
     b = bh()
-    heap = hc.build_heap()
+    heap = hc.build_node_lists()
     # heapify
     hc.my_pq.myHeap = b.build_heap(heap)
     root = hc.build_huffman_tree()

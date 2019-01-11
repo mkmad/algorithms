@@ -1,5 +1,5 @@
-from mycode.dsap.trees import populate_tree as pt
-from mycode.dsap.trees.bst_operations import BSTOperations as bsto
+from dsap.trees import populate_tree as pt
+from dsap.trees.bst_operations import BSTOperations as bsto
 
 
 class TriNodeRestructuring(object):
