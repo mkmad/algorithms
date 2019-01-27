@@ -2,7 +2,7 @@ from trinode_restructuring import TriNodeRestructuring as tri
 from dsap.trees.bst_operations import BSTOperations as bsto
 from dsap.trees import populate_tree as pt
 
-import math
+import mathProblems
 
 
 class AVL(object):
@@ -96,7 +96,7 @@ class AVL(object):
 
             # If node has both children
             if x.left and x.right:
-                if math.fabs(x.left.height - x.right.height) > 1:
+                if mathProblems.fabs(x.left.height - x.right.height) > 1:
                     print 'Node {} is in violation'.format(x.lable)
                     if x.left.height > x.right.height:
                         y = x.left
@@ -114,7 +114,7 @@ class AVL(object):
 
             # If node, just has a left child
             elif x.left:
-                if math.fabs(x.left.height - 0) > 1:
+                if mathProblems.fabs(x.left.height - 0) > 1:
                     print 'Node {} is in violation'.format(x.lable)
                     y = x.left
                     if y.left:
@@ -125,7 +125,7 @@ class AVL(object):
 
             # If the node just has a right child
             elif x.right:
-                if math.fabs(x.right.height - 0) > 1:
+                if mathProblems.fabs(x.right.height - 0) > 1:
                     print 'Node {} is in violation'.format(x.lable)
                     y = x.right
                     if y.right:

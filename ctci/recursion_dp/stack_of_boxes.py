@@ -11,7 +11,6 @@ class StackOfBoxes(object):
     The height of a stack is the sum of the heights of
     each box
 
-
     Note: The requirements of this problem stipulate
     that the lower boxes must be strictly greater
     than the higher boxes in all dimensions. Therefore,
@@ -56,7 +55,7 @@ class StackOfBoxes(object):
 
             self.stack_boxes(boxes[1:], stack, sum_)
         else:
-            print sum_
+            print "Best height for this recursion: {0}".format(sum_)
             print
 
     def generate_boxes(self):
@@ -105,10 +104,11 @@ class StackOfBoxes(object):
         # description
         boxes = sorted(boxes, key=lambda x: x.height, reverse=True)
         for i, v in enumerate(boxes):
+            print "Starting point is {0}".format(i)
             self.stack_boxes(boxes[i:], [])
 
 
 if __name__ == '__main__':
-
+    print
     s = StackOfBoxes()
     s.main()

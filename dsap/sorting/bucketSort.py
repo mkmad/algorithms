@@ -1,4 +1,4 @@
-import math
+import mathProblems
 
 
 class BucketSort(object):
@@ -23,7 +23,7 @@ class BucketSort(object):
 
         For 334
 
-        math.floor(math.log10(334)) -> 2.0
+        mathProblems.floor(mathProblems.log10(334)) -> 2.0
 
         Now 10 ** 2 -> 100
 
@@ -38,7 +38,7 @@ class BucketSort(object):
               else the value will not be what we wanted
 
               Eg:
-                math.log10(334) -> 2.52374
+                mathProblems.log10(334) -> 2.52374
                 and 10 ** 2.52374 -> 333.99502
 
                 So 334 / 10 ** 2.52374 -> 1.000...
@@ -59,9 +59,9 @@ class BucketSort(object):
 
         """
         # Note, taking abs value is necessary otherwise
-        # math.log10 wont work
-        number = math.fabs(n)
-        highest_power10 = math.floor(math.log10(number))
+        # mathProblems.log10 wont work
+        number = mathProblems.fabs(n)
+        highest_power10 = mathProblems.floor(mathProblems.log10(number))
         denominator = 10 ** highest_power10
         return int(number / denominator)
 

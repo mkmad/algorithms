@@ -23,9 +23,35 @@ class ValidEquations(object):
             else:
                 return
 
+    def evaluate_(self, input, target, running_sum=None, index=0):
+
+        if running_sum is None:
+            if len(input) < 2:
+                return
+            else:
+                minus = input[0] - input[1]
+                addition = input[0] + input[1]
+                self.evaluate_(input, target, running_sum=minus, index=2)
+                self.evaluate_(input, target, running_sum=addition, index=2)
+                return
+
+        if running_sum == target:
+            print "Found target: index {0}".format(index)
+            return
+
+        if index > len(input) - 1:
+            return
+
+        if running_sum > target:
+            return
+        else:
+            self.evaluate_(input, target, running_sum=running_sum + input[index], index=index + 1)
+            self.evaluate_(input, target, running_sum=running_sum - input[index], index=index + 1)
+
     def main(self):
         num = [2, 3, 4, 5]
         ops = []
+        print "First method"
         if not self.evaluate(num, 6, ops, prev=num[0], index=1):
             print "No valid equation found"
         else:
@@ -34,6 +60,10 @@ class ValidEquations(object):
                 for i in range(len(ops)):
                     print '{0} {1}'.format(num[i], ops[i]),
                 print num[-1]
+
+        print
+        print "Second method"
+        self.evaluate_(num, 6)
 
 
 if __name__ == '__main__':

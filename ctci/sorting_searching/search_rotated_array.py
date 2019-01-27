@@ -13,13 +13,18 @@ class SearchInRotatedArray(object):
     Output 8 (the index of 5 in the array)
 
     This is similar to binary search but at any given point (mid)
-    it is a little tricky to decided which side to go next. Unlike
-    binary search, where we compare the target against mid, here
+    it is a little tricky to decided which side to go next.
+
+    Unlike binary search, where we compare the target against mid, here
     we make use of the idea that at any given moment of an rotated
     sorted array either the left of mid or the right of mid will
-    be completely sorted linearly. Then we check if the target is
-    in the range of the sorted section, if it is then go in that
-    direction else go in the opposite direction
+    be completely sorted linearly (i.e it depends on where the rotation
+    has the start point, if the start point is on the left of mid then the
+    right of the mid is completely sorted or vice versa).
+
+    Then we check if the target is in the range of the sorted section
+    first , if it is then go in that direction else go in the opposite
+    direction using the binary search algorithm
 
     """
 

@@ -3,7 +3,7 @@ class FlipBit(object):
     """
     Flip Bit to Win: You have an integer and you can
     flip exactly one bit from a 0 to a 1. Write code
-    to find the length of the longest sequence of 1s
+    to find the length of the longest sequence of 1's
     you could create.
 
     SOLUTION
@@ -26,7 +26,7 @@ class FlipBit(object):
         Also not, the number of bits in a number can be
         obtained either by:
 
-        1) math.ceil(math.log(num, 2))
+        1) mathProblems.ceil(mathProblems.log(num, 2))
         2) num.bit_length()
 
         """

@@ -1,4 +1,4 @@
-import math
+import mathProblems
 
 
 class Fitbits(object):
@@ -37,7 +37,7 @@ class Fitbits(object):
 
         # The number of bits is always the ceiling
         # of the log base 2 of the value
-        no_of_bits = int(math.ceil(math.log(n, 2)))
+        no_of_bits = int(mathProblems.ceil(mathProblems.log(n, 2)))
 
         print '\nNo of bits in n'
         print no_of_bits

@@ -17,6 +17,9 @@ class SubsetSum(object):
         if index > len(numbers) - 1:
             return
 
+        if sum > target:
+            return
+
         else:
             # Choose this number
             self.findSubset(numbers, index + 1, sum + numbers[index], target, path + str(numbers[index]) + '_')

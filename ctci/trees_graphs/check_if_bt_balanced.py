@@ -1,4 +1,4 @@
-import math
+import mathProblems
 
 
 class Balanced(object):
@@ -43,7 +43,7 @@ class Balanced(object):
             if node.right:
                 right = self.is_blanced(node.right, height=height + 1)
 
-            if math.fabs(left - right) > 1:
+            if mathProblems.fabs(left - right) > 1:
                 return float('inf')
             else:
                 return max(left, right)

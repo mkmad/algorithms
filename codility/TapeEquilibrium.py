@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import math
+import mathProblems
 
 
 class TapeEquilibrium(object):
@@ -71,9 +71,9 @@ class TapeEquilibrium(object):
                 rem_sum -= A[p - 1]
 
                 if min_val is None:
-                    min_val = math.fabs(running_sum - rem_sum)
+                    min_val = mathProblems.fabs(running_sum - rem_sum)
                 else:
-                    temp = math.fabs(running_sum - rem_sum)
+                    temp = mathProblems.fabs(running_sum - rem_sum)
                     if temp < min_val:
                         min_val = temp
 

@@ -16,6 +16,26 @@ class PowerSet(object):
 
     P(S) = { {}, {a}, {b}, {c}, {a,b}, {a,c}, {b,c}, {a,b,c} }
 
+    How this works:
+
+        BaseCase: n = 0
+        There is just one subset of the empty set: {}.
+
+        Case: n = 1.
+        There are two subsets of the set {al } : {}, {a1}.
+
+        Case:n =2.
+        There are four subsets of the set{a1} a2} : {}, {a1},{a2},{a1, a2).
+
+        Case:n =3.
+        Now here's where things get interesting. We want to find away of generating
+        the solution for n on the prior solutions.
+
+        P(2) = {}, {a1} , {a2} , {a1, a2}
+        P(3) = {}, {a1} , {a2} , {a3}, {a1, a2}, {a2, a3}, {a1, a3}, {a1, a2, a3}
+
+        so, P(3) = adding a3 to all the elements in a2
+
     """
 
     def __init__(self):
@@ -41,5 +61,7 @@ class PowerSet(object):
 if __name__ == '__main__':
     ps = PowerSet()
     input_set = set(['a', 'b', 'c'])
+    ps.input = ['a', 'b', 'c']
     ps.get_power_set(input_set)
     print ps.power_set
+

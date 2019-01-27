@@ -10,12 +10,20 @@ class Multiply(object):
     so you can recursively add b, a times. Also, note you can
     simply call the recursion a / 2 times and later multiply the
     result by 2 (using bit manipulation) and add b if a is odd
+
+    For edge cases 0 and 1 return 0 and b for all other cases first
+    divide a by 2 using right shift, then call multiply recursively
+    on the half. When the recursion returns the half product then
+    if a is even multiply the half product by 2 using bit shift
+    and if a is odd then multiply the the half product by 2 and add
+    b to the result
     """
 
     def __init__(self):
         pass
 
     def multiply_(self, a, b):
+        print a, b
         if b == 0 or a == 0:
             return 0
         elif a == 1:
@@ -35,4 +43,4 @@ class Multiply(object):
 if __name__ == '__main__':
     m = Multiply()
     print m.multiply_(12, 10)
-    print m.multiply_(1234, 4567)
+    # print m.multiply_(1234, 4567)

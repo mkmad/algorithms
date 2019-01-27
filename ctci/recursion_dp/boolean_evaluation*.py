@@ -12,6 +12,15 @@ class BooleanEvaluation(object):
     EXAMPLE
     countEval("1^0|0|1", false) -> 2
     countEval("0&0&0&1^1|0", true) - > 10
+
+    Note: The recursion branches towards right side of the
+          of the string and checking if each atomic char results
+          in the boolean value. Also if the recursion returns
+          true then add one to the number of ways to parenthesize
+          the value
+
+    Also note: The number of recursion branches depends on the boolean
+               character
     """
 
     def __init__(self):

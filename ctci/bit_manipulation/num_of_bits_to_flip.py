@@ -17,8 +17,12 @@ class NumBits(object):
 
         The questions asks the number of flips required
         hence even if the number of 1's and 0's are the same
-        the number of flips might not be the same to convert
-        one number to another.
+        the number of flips might is not 0, so to convert
+        one number to another get the xor of both the numbers
+        and just get the count of the 1's in the result, coz
+        the 1's in the result signify the difference in the
+        bit position in both the numbers
+
         """
         diff = num1 ^ num2
         print 'Number of bits required to ' \

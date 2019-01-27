@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import math
+import mathProblems
 
 
 class CountingDiv(object):
@@ -34,10 +34,10 @@ class CountingDiv(object):
         if 0 <= A <= 2000000000 and 0 <= B <= 2000000000 and 1 <= K <= 2000000000:
             if A <= B:
                 if A > 0 and B > 0:
-                    return int(math.ceil(B / K - (A / K)))
+                    return int(mathProblems.ceil(B / K - (A / K)))
                 else:
                     if B > 0:
-                        return int(math.ceil(B / K)) + 1
+                        return int(mathProblems.ceil(B / K)) + 1
                     else:
                         return 1
 

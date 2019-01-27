@@ -18,9 +18,8 @@ class EightQueens(object):
 
         return True
 
-    # Method 1
     def place_queen(self, row, column, num_queens, placed):
-        # print if row == num_queens, since its zero indexed
+        # print if row == num_queens, since row is zero indexed
         if row == num_queens:
             print placed
 
@@ -42,29 +41,6 @@ class EightQueens(object):
         else:
             self.place_queen(row, column + 1, num_queens, placed)
 
-    # Method 2
-    def place_queen_(self, placed, num_queens, row=0):
-
-        if row == num_queens:
-            return True
-
-        elif row > num_of_queens:
-            return False
-
-        # Here instead of calling the previous iteration with
-        # a different column we just iterate through the columns
-        # for a given row. This way I don't have to worry about
-        # column going overboard
-        for pos in range(num_of_queens):
-            if self.check_valid(row, pos, placed):
-                placed.append((row, pos))
-                if self.place_queen_(placed, num_queens, row=row + 1):
-                    return True
-                else:
-                    placed.pop()
-                    continue
-        return False
-
 
 if __name__ == '__main__':
     e = EightQueens()
@@ -73,12 +49,15 @@ if __name__ == '__main__':
     # Use this for loop to start from all possible
     # starting locations
 
-    print '\nMethod 1\n'
-    for val in range(num_of_queens):
-        e.place_queen(0, val, num_of_queens, [])
+    # Also note, I am just printing the first set of
+    # combination to place the queens for any given
+    # start location, so the algorithm doesn't consider
+    # all the other available possibilities of placing
+    # the queens for a given start location
 
-    print '\nMethod 2\n'
-    placed = []
-    e.place_queen_(placed, num_of_queens)
-    print placed
+    print
+    for val in range(num_of_queens):
+        print "Start location ({0} : {1})".format(0, val)
+        e.place_queen(0, val, num_of_queens, [])
+        print
 

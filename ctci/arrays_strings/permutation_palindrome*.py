@@ -17,6 +17,11 @@ def check_palindrome_of_permutations(string):
     we expect all values to be 0 with at most one value of
     1
 
+    Note: The chars are just not alphabets, it could be
+          numbers or any other characters, hence it makes
+          sense to have array that's of the size of ascii
+          characters
+
     We can achieve the same thing using bit manipulation
     i.e. we can set/unset the bit corresponding to the char
 

@@ -1,4 +1,4 @@
-import math
+import mathProblems
 
 
 class RadixCountingSort(object):
@@ -142,9 +142,9 @@ class RadixCountingSort(object):
                 return val % 10
         else:
             if val < 0:
-                temp = - int(math.fabs(val) / 10**(index - 1))
+                temp = - int(mathProblems.fabs(val) / 10 ** (index - 1))
             else:
-                temp = int(math.fabs(val) / 10 ** (index - 1))
+                temp = int(mathProblems.fabs(val) / 10 ** (index - 1))
 
         if temp > 0:
             return temp % 10
