@@ -19,6 +19,10 @@ class MinHeap(object):
         """
         Get the left child based on zero index
         2i
+
+        note the + 1 and -1 this is done because
+        in a zero based index 2i will be 2 * 0 and
+        that is not the left node
         """
         index = ((node + 1) * 2) - 1
         if index <= len(self.myHeap) - 1:
@@ -92,7 +96,7 @@ class MinHeap(object):
         if self.myHeap:
             min_ = self.get_min()
             if len(self.myHeap) > 1:
-                self.swap(0, len(self.myHeap) -1)
+                self.swap(0, len(self.myHeap) - 1)
                 self.myHeap.pop()
                 self.downheap(0)
             else:
