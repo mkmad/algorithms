@@ -53,6 +53,10 @@ class CircularQueue(object):
 
     def enqueue_with_resize(self, val):
         temp = [None] * self.Queue_size
+
+        # Todo: Note: extend for lists will copy the values
+        # Todo:       so even if we modify the temp variable
+        # Todo:       it wont effect self.myQueue
         self.myQueue.extend(temp)
         self.Queue_size *= 2
         # Tail needs to be declared before writing the value into the

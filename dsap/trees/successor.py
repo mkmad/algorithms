@@ -3,14 +3,52 @@ import populate_tree as pt
 
 class Successor(object):
     """
-    Predecessor is the same as successor on the other direction
+
+    Goal is to find in-order successor in a bst and there are two
+    cases:
+
+        1. If the node has a right subtree then find the leftmost node
+           in that right subtree. Note if there are no left nodes then
+           return the last leaf node where the recursion terminates
+
+        2. If the node has no right subtree then you need to move up
+           the to the parent nodes and check if the node under
+           consideration is the left sub tree of the node's parent
+           If there exists no parent that satisfy that condition then
+           the node has no successor (it is the right most node in the
+           tree)
+
+    Note: Predecessor is the same as successor on the other direction
+
+    Also note: If there are no pointers to the parents, you can simply
+               find the node and build the path and try finding out the
+               successor that way
     """
     def successor(self, node):
         if node:
+            # Case 1
             if node.right:
                 return self.find_leftmost(node.right, node)
+            # Case 2
             else:
-                raise Exception('Node has no Succesor')
+
+                cur = node
+                succ = None
+
+                while True:
+
+                    if not cur.parent:
+                        break
+
+                    if cur is cur.parent.left:
+                        succ = cur
+                        break
+
+                    else:
+                        cur = cur.parent
+
+                return succ
+
         else:
             raise Exception('Need a node')
 

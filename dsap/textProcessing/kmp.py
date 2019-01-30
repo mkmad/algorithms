@@ -9,22 +9,25 @@ class KMP(object):
     def failure_function(pattern):
         """
 
+        calculating failure function
+
         The idea is to run two pointers i and j, i starting from 1
         and j from 0
 
-        if values at the pattern i and j don't match then we check the
+        if values at the pattern i and j don't match then we check the next
         possible value for j and this is found using the failure function
         array that's already computed so far. So, j is moved one index
         back and we check the value of f_array[j - 1] and move j there.
         This continues till we find a match between input[j] and
         input[i] or till j reaches 0
 
-        if value matches however, value at i is changed to 'j' + 1 in the
+        if value matches however, value at f[i] is changed to j + 1 in the
         failure function array. Then both i and j are incremented. This is
         repeated until there is a mismatch or i reaches the end
 
         note
-        its j + 1 (index j), not the actual value at f_array[j + 1].
+        The value at f[i] is changed to j + 1 (index j), not the actual value
+        at f_array[j + 1].
 
         The concept behind this is, when we are actually checking the
         pattern with the string and if it mismatches at an index, then
@@ -54,10 +57,17 @@ class KMP(object):
 
         We get the location of 'c' from the failure function.
 
+
+        Note: The above example is comparing the string with the pattern, its
+              not calculating the failure function, for that we just need the
+              pattern
+
+
         Watch TR if you have more questions
 
         """
 
+        # initialize failure function to 0's
         failure_array = [0 for _ in range(len(pattern))]
 
         # i starts from 1 anf j from 0, this makes sure that
@@ -68,7 +78,7 @@ class KMP(object):
         while i < len(pattern):
             if pattern[i] == pattern[j]:
                 # If there is a match we store the value
-                # at j + 1 (this is the value not index j)
+                # at f[j + 1] (this is the value not index j) to f[i]
                 # This is what tells us where to start if
                 # there was a mis match at i. We also increment
                 # both i and j in this condition
@@ -80,9 +90,12 @@ class KMP(object):
                 # the value at j - 1 (only if j > 0,
                 # otherwise move on to the next value with i)
 
-                # Note: i is not changed here
+                # Note: i is not changed here, if j > 0
                 if j > 0:
                     j = failure_array[j - 1]
+
+                # if j is 0 then just increment i as f[i] already has 0
+                # as its value
                 else:
                     i += 1
 
@@ -92,8 +105,8 @@ class KMP(object):
 
         failure_array = self.failure_function(pattern)
 
-        # i iterates over the string and j iterates over the
-        # pattern
+        # Todo: i iterates over the string and j iterates over the
+        # Todo: pattern
         i = 0
         j = 0
 

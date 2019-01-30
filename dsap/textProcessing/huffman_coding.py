@@ -87,7 +87,7 @@ class HuffmanCoding(object):
                 node.left = min1
                 node.right = min2
                 self.my_pq.insert(node)
-                return self.build_huffman_tree()
+                self.build_huffman_tree()
             else:
                 return min1
 

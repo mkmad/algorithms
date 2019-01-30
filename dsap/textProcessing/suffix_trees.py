@@ -101,6 +101,9 @@ class SuffixTree(object):
 
                     # Check if there is a suffix that starts with
                     # word[index] in any of the child's first char
+
+                    # todo: convert root.children to dict, that way
+                    # todo: we can eleminate the array
                     for val in root.children:
                         if word[index] == val.label[0]:
                             match = True

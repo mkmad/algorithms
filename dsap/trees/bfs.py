@@ -1,5 +1,5 @@
 import populate_tree
-from mycode.dsap.stackNQueue.queue import Queue as qq
+from dsap.stackNQueue.queue import Queue as qq
 
 
 class BFS(object):
