@@ -1,30 +1,38 @@
-class Node(object):
+class MinimalTree(object):
 
-    def __init__(self):
-        self.data = None
-        self.left = None
-        self.right = None
+    """
+    Build a tree with minimum number of levels
 
-    def set_data(self, val):
-        # check for invalid input
-        self.data = val
+    Sol, You can build the tree using binary search
+    kinda algorithm
 
-    def set_left(self, node):
-        self.left = node
+    """
 
-    def set_right(self, node):
-        self.right = node
+    class Node(object):
 
-    def get_data(self):
-        return self.data
+        def __init__(self):
+            self.data = None
+            self.left = None
+            self.right = None
 
-    def get_left(self):
-        return self.left
+        def set_data(self, val):
+            # check for invalid input
+            self.data = val
 
-    def get_right(self):
-        return self.right
+        def set_left(self, node):
+            self.left = node
 
-class minimal_tree(object):
+        def set_right(self, node):
+            self.right = node
+
+        def get_data(self):
+            return self.data
+
+        def get_left(self):
+            return self.left
+
+        def get_right(self):
+            return self.right
     
     def __init__(self, array):
         self.array = array
@@ -41,7 +49,7 @@ class minimal_tree(object):
             # return for that particular input.
             if not array:
                 return None
-            node = Node()
+            node = self.Node()
             mid = len(array) / 2
             node.set_data(array[mid])
             node.set_left(self.create_tree(array[:mid]))
@@ -54,7 +62,8 @@ class minimal_tree(object):
         root = self.create_tree(self.array)
         return root
 
-class traverse_tree(object):
+
+class TraverseTree(object):
 
     def __init__(self, root):
         self.root = root
@@ -70,16 +79,16 @@ class traverse_tree(object):
             print 'Root ->', root.get_data()
             print 'Left ->', self.traverse(root.get_left())
             print 'Right ->', self.traverse(root.get_right())
-        
+
 
 if __name__ == '__main__':
-    array = [1,2,3,4,5,6,7,8,9]
-    mt = minimal_tree(array)
+    array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    mt = MinimalTree(array)
     root = mt.build_tree()
-    traverse_tree(root)
+    TraverseTree(root)
 
 '''
-Note: For recurssive functions always supply the input directly, 
+Note: For recursive functions always supply the input directly, 
       don't keep the input in the global space.
 
 '''

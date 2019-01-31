@@ -1,9 +1,23 @@
-class common_ancestor(object):
+class CommonAncestor(object):
+
+    """
+    Goal is to find the common ancestor of two nodes in a
+    binary tree (not BST)
+
+
+    So, for each of the input node, find the node in the tree
+    and also maintain a path array for both the nodes. When
+    both the paths are populated all you have to find out is the
+    node / index where the paths diverge and that's the common
+    ancestor
+
+    """
+
     def __init__(self):
         self.path_p = []
         self.path_q = []
 
-    def find_common(self, root = None, p = None, q = None):
+    def find_common(self, root=None, p=None, q=None):
         if root:
             if self.find_path(root, p, type="first", path=[]) and \
                     self.find_path(root, q, type="second", path=[]):
@@ -13,7 +27,7 @@ class common_ancestor(object):
         else:
             print "Invalid Input"
 
-    def find_path(self, root, node, type = "first", path=[]):
+    def find_path(self, root, node, type="first", path=[]):
         # note how path is passed around
         path.append(node)
         if root.data == node.data:
@@ -37,7 +51,7 @@ class common_ancestor(object):
                 if v != self.path_p[k]:
                     return self.path_q[k-1]
 
+
 if __name__ == '__main__':
-    c = common_ancestor()
-    root, p, q = None, None, None
-    c.find_common(root, p , q)
+    c = CommonAncestor()
+    c.find_common(None, None, None)
