@@ -19,54 +19,34 @@ class MissingInteger(object):
     each element of array A is an integer within the range
     [−1,000,000..1,000,000].
 
+    Solution:
 
-    Note: The solution below works but the running time is more than
-          o(n) because for each iteration I am checking if val is in nums
-          that itself is a o(n) operation therefore the overall running
-          time is o(n^2)
-
-        def solution(A):
-
-            nums = []
-            if 1 <= len(A) <= 100000:
-                for val in A:
-                    if -1000000 <= val <= 1000000:
-                        if val not in nums:
-                            nums.append(val)
-
-                for val in range(1, 1000000):
-                    if val not in nums:
-                        return val
-
-
-    Hence I use the bit vector approach to solve this.
-    Note: I need to consider two offsets:
-        1) zero indexed
-        2) the solution could be in N + 1 position
+        Convert the array into a set, this will eliminate all the
+        duplicates, then run a for loop from 1 to 1 million (since thats
+        the limit). In the for loop just keep adding the number to the set,
+        meanwhile keeping track of the previous length and the post adding
+        length of the set. If its increased by 1 then we know that this is
+        the first missing integer
 
     """
 
     @staticmethod
     def solution(A):
 
-        if 1 <= len(A) <= 100000:
-            max_ = max(A)
-            if max_ > 0:
-                nums = [0] * (max_ + 2)
-            else:
-                return 1
+        # convert to set
+        s = set(A)
 
-            for val in A:
-                if 0 < val <= 1000000:
-                    if not nums[val]:
-                        nums[val] = 1
+        for val in range(1, 1000001):
+            prev = len(s)
+            s.add(val)
+            if len(s) == prev + 1:
+                return val
 
-            for i, val in enumerate(nums):
-                if i > 0:
-                    if not val:
-                        return i
+        return 0
 
 
 if __name__ == '__main__':
     m = MissingInteger()
     print m.solution([1, 3, 6, 4, 1, 2])
+    print m.solution([1, 3, 6, 4, 1, 2, 5])
+    print m.solution([0, 0, 0, 0, 0, 0])

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import mathProblems
+import math
 
 
 class CountingDiv(object):
@@ -23,9 +23,12 @@ class CountingDiv(object):
 
 
     Note:
-    Number of integer in the range [1 .. X] that divisible
+    Number of integer in the range [0 .. X] that divisible
     by K is X/K. So, within the range [A .. B], the result
-    is B/K - (A)/K
+    is B/K - A/K i.e. The number of integers that are divisible
+    from 0 to B minus the number of integers that are divisible
+    from 0 to A
+
 
     """
 
@@ -34,10 +37,10 @@ class CountingDiv(object):
         if 0 <= A <= 2000000000 and 0 <= B <= 2000000000 and 1 <= K <= 2000000000:
             if A <= B:
                 if A > 0 and B > 0:
-                    return int(mathProblems.ceil(B / K - (A / K)))
+                    return int(math.ceil(B / K - (A / K)))
                 else:
                     if B > 0:
-                        return int(mathProblems.ceil(B / K)) + 1
+                        return int(math.ceil(B / K)) + 1
                     else:
                         return 1
 
@@ -48,4 +51,4 @@ if __name__ == '__main__':
     print c.solution(10, 10, 5)
     print c.solution(10, 10, 7)
     print c.solution(10, 10, 20)
-    print c.solution(0, 13, 2)
+    print c.solution(1, 13, 2)

@@ -1,3 +1,7 @@
+SEEN_ONE = False
+MAX_COUNT = 0
+
+
 class BinaryGap(object):
 
     """
@@ -40,31 +44,49 @@ class BinaryGap(object):
     # TODO: Since I am binary shifting everytime, I am dividing the
     # TODO: the number by 2
 
-    @staticmethod
-    def solution(N):
+    def solution(self, N):
+
+        global SEEN_ONE
+        global MAX_COUNT
+
         # write your code in Python 3.6
-        if not 1 <= N <= 2147483647:
-            return 0
+        if type(N) != int:
+            return
 
-        maxgap = 0
-        currentgap = 0
-        found_one = False
-        while N > 0:
-            if N % 2 == 0:
-                if found_one:
-                    currentgap += 1
-                    if maxgap < currentgap:
-                        maxgap = currentgap
-            elif N % 2 == 1:
-                if not found_one:
-                    found_one = True
-                currentgap = 0
+        if 1 <= N <= 2147483647:
+            self.count_gap(N, 0)
 
-            N >>= 1
-        return maxgap
+        return MAX_COUNT
 
-    """
-    Codility Checks
-    
-    
-    """
+    def count_gap(self, number, running_count):
+
+        global SEEN_ONE
+        global MAX_COUNT
+
+        # This check is important because 0 >> 1 is 0 and
+        # the recursion will not terminate
+        if number <= 0:
+            return
+
+        # Check if the last bit is 1 or not
+        if number & 1:
+            if not SEEN_ONE:
+                SEEN_ONE = True
+            else:
+                MAX_COUNT = max(MAX_COUNT, running_count)
+
+            self.count_gap(number >> 1, 0)
+
+        else:
+            if SEEN_ONE:
+                running_count += 1
+                self.count_gap(number >> 1, running_count)
+            else:
+                self.count_gap(number >> 1, 0)
+
+
+if __name__ == '__main__':
+    b = BinaryGap()
+    print b.solution(529)
+
+

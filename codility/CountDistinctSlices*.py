@@ -54,7 +54,9 @@ class CountDistinctSlices(object):
     expected worst-case space complexity is O(M) (not counting the storage
     required for input arguments)
 
-    Note: pretty straightforward, use caterpillar method
+    Note: pretty straightforward, use caterpillar method. The number of
+          distinct slices of a sub array with distinct numbers is given
+          by (end_index - start_index + 1)
     """
 
     @staticmethod
@@ -63,7 +65,7 @@ class CountDistinctSlices(object):
         front = back = 0
         seen = [False] * (M + 1)
         while front < len(A) and back < len(A):
-            while front < len(A) and seen[A[front]] != True:
+            while front < len(A) and seen[A[front]] is not True:
                 the_sum += (front - back + 1)
                 seen[A[front]] = True
                 front += 1
@@ -81,3 +83,5 @@ class CountDistinctSlices(object):
 if __name__ == '__main__':
     c = CountDistinctSlices()
     print c.solution(6, [3, 4, 5, 5, 2])
+    print c.solution(3, [1, 2])
+    print c.solution(3, [2, 2])
