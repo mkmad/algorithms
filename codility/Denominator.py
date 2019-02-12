@@ -4,7 +4,7 @@
 class Denominator(object):
 
     """
-    An array A consisting of N integers is given. The dominator of array A is
+    An array A consisting of N integers is given. The denominator of array A is
     the value that occurs in more than half of the elements of A.
 
     For example, consider array A such that
@@ -12,7 +12,7 @@ class Denominator(object):
      A[0] = 3    A[1] = 4    A[2] =  3
      A[3] = 2    A[4] = 3    A[5] = -1
      A[6] = 3    A[7] = 3
-    The dominator of A is 3 because it occurs in 5 out of 8 elements of A
+    The denominator of A is 3 because it occurs in 5 out of 8 elements of A
     (namely in those with indices 0, 2, 4, 6 and 7) and 5 is more than a half of 8.
 
     Write a function
@@ -20,8 +20,8 @@ class Denominator(object):
     def solution(A)
 
     that, given an array A consisting of N integers, returns index of any
-    element of array A in which the dominator of A occurs. The function
-    should return −1 if array A does not have a dominator.
+    element of array A in which the denominator of A occurs. The function
+    should return −1 if array A does not have a denominator.
 
     Assume that:
 
@@ -41,9 +41,16 @@ class Denominator(object):
     expected worst-case space complexity is O(1) (not counting the
     storage required for input arguments)
 
-
-
     Note:
+
+        Basic idea of the algorithm is that if we cancel out each
+        occurrence of an element e with all the other elements that
+        are different from e then e will exist till end if it is a
+        majority element
+
+        IMP:  This Method only works when we are given that majority
+              element do exist in the array , otherwise this method
+              won’t work
 
         This is a perfect example of finding majority of an element in
         a collection, keep incrementing the votes if you find the element

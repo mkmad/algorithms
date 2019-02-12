@@ -10,8 +10,14 @@ class EquiLeader(object):
     the elements of A.
 
     An equi leader is an index S such that 0 ≤ S < N − 1 and two sequences
-    A[0], A[1], ..., A[S] and A[S + 1], A[S + 2], ..., A[N − 1] have leaders
-    of the same value.
+    A[0], A[1], ..., A[S] and A[S + 1], A[S + 2], ..., A[N − 1] have same
+    leader on the left and the right side of the index.
+
+    i.e. in the left side of the index the leader var is leading and on the
+    right side of the index the leader var is still leading
+
+    Note: There is only one leader, we just check for the count of this leader
+          on the left and the right
 
     For example, given array A such that:
 
@@ -46,6 +52,7 @@ class EquiLeader(object):
         A[3] = 4
         A[4] = 4
         A[5] = 2
+
     the function should return 2, as explained above.
 
     Assume that:
@@ -59,6 +66,19 @@ class EquiLeader(object):
     expected worst-case time complexity is O(N);
     expected worst-case space complexity is O(N) (not counting the storage
     required for input arguments).
+
+
+    Sol,
+
+    Get the leader using the moore voting algorithm, then run through the
+    array again and get the total count of occurrence of the leader.
+
+    Now iterate through the array the third time and keep track of how many
+    occurrence of the leader var you encountered so far. The actual check is
+    to see if the leader var is leading on the left side of the index and the
+    right side of the index.
+
+
 
     """
     @staticmethod

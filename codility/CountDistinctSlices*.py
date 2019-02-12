@@ -24,6 +24,12 @@ class CountDistinctSlices(object):
 
     The goal is to calculate the number of distinct slices.
 
+    Again,  A distinct slice is a slice consisting of only unique numbers
+
+    another example of distinct slices for [1, 2, 3, 4] are:
+        [1], [2], [3], [4], [1, 2], [2, 3], [3, 4], [1, 2, 3], [2, 3, 4], [1, 2, 3, 4]
+
+
     Write a function:
 
     def solution(M, A)
@@ -55,8 +61,8 @@ class CountDistinctSlices(object):
     required for input arguments)
 
     Note: pretty straightforward, use caterpillar method. The number of
-          distinct slices of a sub array with distinct numbers is given
-          by (end_index - start_index + 1)
+          distinct slices of a sub array is the addition of (end_index - start_index + 1)
+          for every value of end_index
     """
 
     @staticmethod
@@ -85,3 +91,4 @@ if __name__ == '__main__':
     print c.solution(6, [3, 4, 5, 5, 2])
     print c.solution(3, [1, 2])
     print c.solution(3, [2, 2])
+    print c.solution(5, [1, 2, 3, 4])

@@ -66,6 +66,10 @@ class MazeWithPaths(object):
                 return True
             else:
                 # checks if any of the future paths are valid
+
+                # TODO: Optimize this path finding, because I am literally
+                # TODO: finding all possible paths even if a single path
+                # TODO: succeeds in finding the target co-ordinate
                 if self.find_path(x, y + 1, out_x, out_y, path) or \
                         self.find_path(x + 1, y, out_x, out_y, path) or \
                         self.find_path(x, y - 1, out_x, out_y, path) or \

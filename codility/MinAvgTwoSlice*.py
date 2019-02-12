@@ -1,16 +1,66 @@
 class MinAvgTwoSlice(object):
 
     """
+    # Problem Description
+
+    A non-empty zero-indexed array A consisting of N integers is given. A pair of integers (P, Q),
+    such that 0 <= P < Q < N, is called a slice of array A (notice that the slice contains at least
+    two elements). The average of a slice (P, Q) is the sum of A[P] + A[P + 1] + ... + A[Q] divided
+    by the length of the slice. To be precise, the average equals (A[P] + A[P + 1] + ... + A[Q]) / (Q - P + 1).
+
+    For example, array A such that:
+        A[0] = 4
+        A[1] = 2
+        A[2] = 2
+        A[3] = 5
+        A[4] = 1
+        A[5] = 5
+        A[6] = 8
+
+    contains the following example slices:
+            slice (1, 2), whose average is (2 + 2) / 2 = 2;
+            slice (3, 4), whose average is (5 + 1) / 2 = 3;
+            slice (1, 4), whose average is (2 + 2 + 5 + 1) / 4 = 2.5.
+
+    The goal is to find the starting position of a slice whose average is minimal.
+
+
+    Write a function:
+
+        def solution(A)
+
+    that, given a non-empty zero-indexed array A consisting of N integers, returns the starting
+    position of the slice with the minimal average. If there is more than one slice with a minimal
+    average, you should return the smallest starting position of such a slice.
+    For example, given array A such that:
+
+        A[0] = 4
+        A[1] = 2
+        A[2] = 2
+        A[3] = 5
+        A[4] = 1
+        A[5] = 5
+        A[6] = 8
+    the function should return 1, as explained above.
+    Assume that:
+            N is an integer within the range [2..100,000];
+            each element of array A is an integer within the range [-10,000..10,000].
+    Complexity:
+            expected worst-case time complexity is O(N);
+            expected worst-case space complexity is O(N), beyond input storage (not counting the
+              storage required for input arguments).
+    Elements of input arrays can be modified.
+
     This problem doesn't even need prefix-sums, so that was a big red-herring. Well mostly.
      The 'trick' is not in the coding at all, but in a realisation about the nature of the problem...
      You're looking for the smallest average of a series of numbers.  At first it looks like you
-     have to permutate over an ever increasing collection of averages of various lengths.
+     have to permute over an ever increasing collection of averages of various lengths.
      But, at some point, you'll realize that a small number will always pull the average down,
      no matter what numbers are around it.
 
      Thus, since it takes at least two numbers to make an average, you may be only looking for a pair
      of numbers which combine to provide the smallest total.
-     To verify this pressumption, consider the slope that graphing the moving average
+     To verify this presumption, consider the slope that graphing the moving average
      of the pair would make. Irrespective of the width of the average, the gradient will always tilt
      down, however slightly, when you come across a small number.
 
@@ -56,50 +106,6 @@ class MinAvgTwoSlice(object):
      longer length averages.  They may be able to match one or other, but will never beat them.
      Thus we can confidently write some trivial code to do a single pass solution which considers only
      the two and three-point averages, but has all averages of longer length sequences covered.
-
-
-    -------------------
-    # Problem Description
-    A non-empty zero-indexed array A consisting of N integers is given. A pair of integers (P, Q),
-    such that 0 <= P < Q < N, is called a slice of array A (notice that the slice contains at least
-    two elements). The average of a slice (P, Q) is the sum of A[P] + A[P + 1] + ... + A[Q] divided
-    by the length of the slice. To be precise, the average equals (A[P] + A[P + 1] + ... + A[Q]) / (Q - P + 1).
-    For example, array A such that:
-        A[0] = 4
-        A[1] = 2
-        A[2] = 2
-        A[3] = 5
-        A[4] = 1
-        A[5] = 5
-        A[6] = 8
-    contains the following example slices:
-            slice (1, 2), whose average is (2 + 2) / 2 = 2;
-            slice (3, 4), whose average is (5 + 1) / 2 = 3;
-            slice (1, 4), whose average is (2 + 2 + 5 + 1) / 4 = 2.5.
-    The goal is to find the starting position of a slice whose average is minimal.
-    Write a function:
-        def solution(A)
-    that, given a non-empty zero-indexed array A consisting of N integers, returns the starting
-    position of the slice with the minimal average. If there is more than one slice with a minimal
-    average, you should return the smallest starting position of such a slice.
-    For example, given array A such that:
-        A[0] = 4
-        A[1] = 2
-        A[2] = 2
-        A[3] = 5
-        A[4] = 1
-        A[5] = 5
-        A[6] = 8
-    the function should return 1, as explained above.
-    Assume that:
-            N is an integer within the range [2..100,000];
-            each element of array A is an integer within the range [-10,000..10,000].
-    Complexity:
-            expected worst-case time complexity is O(N);
-            expected worst-case space complexity is O(N), beyond input storage (not counting the
-              storage required for input arguments).
-    Elements of input arrays can be modified.
-
 
     """
 
