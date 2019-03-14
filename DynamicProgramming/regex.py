@@ -1,6 +1,7 @@
 class Regex(object):
 
     """
+
     Given a pattern and a string find if they are a match
 
     Solution,
