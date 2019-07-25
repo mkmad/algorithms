@@ -6,6 +6,9 @@ class SubsetSum(object):
 
     So, for each and every number you can either choose it
     and move on or ignore it and move on
+
+    Note: Check how the path is maintained as a string and how it stores
+          the final results
     """
 
     def findSubset(self, numbers, index, sum, target, path=''):

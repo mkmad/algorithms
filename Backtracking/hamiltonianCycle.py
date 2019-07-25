@@ -4,7 +4,8 @@ class HamiltonianCycle(object):
     For a given graph, see if you can
     start at a given position and traverse
     through all the vertices of the graph by
-    visiting each vertex exactly once
+    visiting each vertex exactly once and return
+    back to the start vertex
 
 
     This is a simple backtracking problem, for
