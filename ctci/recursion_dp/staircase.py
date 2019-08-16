@@ -17,6 +17,8 @@ class Staircase(object):
 
     But, the way you are supposed to look at recursion
     is to find out how many ways can you reach the top?
+    when you are looking at the code, its basically saying
+    that thats the step (the + 1) from above
 
     n-1 is one of the ways (so is n-2 and n-3) so the
     final recursive formula then becomes:

@@ -36,32 +36,45 @@ class PowerSet(object):
 
         so, P(3) = adding a3 to all the elements in a2
 
+
+    Solution:
+
+        This is similar to bfs, i.e. queue the result from the current function
+        call and then pass this queue for the next function call while store all
+        the results to the external variable.
+
     """
 
     def __init__(self):
-        self.power_set = []
+        self.result = []
 
-    def get_power_set(self, input_set, running_set=None, count=2):
-        if count <= len(input_set):
-            if not running_set:
-                self.power_set.append(set())
-                self.power_set.append(input_set)
-                running_set = copy.deepcopy(input_set)
-            cur_set = set()
-            for val in input_set:
-                for s_val in running_set:
-                    if val not in s_val:
-                        temp = ''.join(sorted(val + s_val))
-                        if temp not in cur_set:
-                            cur_set.add(temp)
-            self.power_set.append(cur_set)
-            self.get_power_set(input_set, cur_set, count=count + 1)
+    def power_set(self, input_set, sub_result):
+
+        output = []
+        # store the intermediate results in the result array
+        # first. Then use the intermediate results to calculate
+        # the next batch of results
+        for val in sub_result:
+            if val not in self.result:
+                self.result.append(val)
+
+        for val in input_set:
+            for sub_val in sub_result:
+                if val not in sub_val:
+                    sub_val_ = copy.deepcopy(sub_val)
+                    sub_val_.add(val)
+                    output.append(sub_val_)
+                    if len(sub_val_) == len(input_set):
+                        self.result.extend(output)
+                        return
+
+        self.power_set(input_set, output)
 
 
 if __name__ == '__main__':
     ps = PowerSet()
-    input_set = set(['a', 'b', 'c'])
-    ps.input = ['a', 'b', 'c']
-    ps.get_power_set(input_set)
-    print ps.power_set
+    input_set = {['a', 'b', 'c']}
+
+    ps.power_set(input_set, [set()])
+    print ps.result
 
