@@ -13,6 +13,13 @@ class HamiltonianCycle(object):
     the number of adjacent vertices. Also maintain
     a visited set to check if you have visited
     a vertex before or not
+
+
+    Note: The difference between this problem and the other backtracking
+          problems (graph coloring ) is, here you check if there is successful
+          solution by selecting one neighbour at a time, in the other problems
+          however, we check if any of the paths (any of the neighbour) lead to
+          the solution (using `or` operator)
     """
 
     def __init__(self):

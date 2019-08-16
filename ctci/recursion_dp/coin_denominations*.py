@@ -1,6 +1,9 @@
 class CoinDenominations(object):
 
     """
+    **************************************************************
+    ****************** This is a wrong solution ******************
+    **************************************************************
 
     NOTE: This is a MEMOIZATION problem
 
@@ -70,3 +73,4 @@ if __name__ == '__main__':
     cd = CoinDenominations()
     cd.coins(target=25)
     print cd.denominations
+    print len(cd.denominations)
