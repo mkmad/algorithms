@@ -25,6 +25,15 @@ class BellmanFord(object):
     distance is reduced then it means the graph has a
     negative weight cycle
 
+    Negative weight cycle
+    ---------------------
+    A negative weight cycle is a cycle with weights that sum to
+    a negative number. The Bellman-Ford algorithm propagates correct
+    distance estimates to all nodes in a graph in V-1 steps, unless
+    there is a negative weight cycle. If there is a negative weight
+    cycle, you can go on relaxing its nodes indefinitely. Therefore,
+    the ability to relax an edge after V-1 steps is a test for the
+    presence of a negative weight cycle
 
     """
 
@@ -68,10 +77,16 @@ class BellmanFord(object):
         no_iterations = len(graph) - 1
         for i in range(no_iterations):
             for edge in self.edges:
+                # if an edge has a value in distance map then it means
+                # the code has already found a path from source to edge.
+                # So, now check if the distance to reach edge[1] from source
+                # is greater than the distance to reach edge[1] from edge[0].
+                # if it is then update the distance
                 if self.distance[edge[1]] > self.distance[edge[0]] + graph[edge[0]][edge[1]]:
                     self.distance[edge[1]] = self.distance[edge[0]] + graph[edge[0]][edge[1]]
                     self.discovered[edge[1]] = edge[0]
 
+        # This condition checks for negative weight cycle
         for edge in self.edges:
             if self.distance[edge[1]] > self.distance[edge[0]] + graph[edge[0]][edge[1]]:
                 raise Exception('Negative weight cycle exists')

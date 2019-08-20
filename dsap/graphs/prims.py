@@ -13,8 +13,32 @@ class PrimsMinimumSpaningTree(object):
     spanning tree) and move to that vertex and repeat the
     same
 
+    flow:
+    -----
+
+    Note: Each obj in the priority queue has a value attached
+    to it along with the label (vertex name). so initialize
+    the priority queue with 0 as value of the start vertex and
+    float('inf') as the values for all other vertices
+
+    In the algorithm, extract min vertex and go through all
+    the neighbours, check if the neighbour is in the heap
+    and if it is then update the value of the distance
+    Note: unlike bellman ford you don't need to check the
+          distance from the source vertex just check it from
+          the vertex that the control is coming from
+
+    Also, we need to maintain the discovered map, that maps
+    the parent and the child vertex
+
+    When we extract min form the heap, we need to add the edge
+    from where the vertex was introduced to the result array
+    (which will hold all the edges that'll be part of the
+    minimum spanning tree)
+
 
     Some optimizations:
+    -------------------
 
     When we explore the neighbours of
     a vertex, we need to record the weights to determine
@@ -48,6 +72,7 @@ class PrimsMinimumSpaningTree(object):
     However, having a map will also help us in update operations of
     vertices (remember we keep updating the value of the vertices
     in the queue)
+
     """
 
     class Node(object):
@@ -79,31 +104,27 @@ class PrimsMinimumSpaningTree(object):
         neighbour is less than that of the neighbours, update the
         neighbours weight.
 
-        Also, update the discovered dict, saying you reached the neighbour
-        from this vertex
+        Also, update the discovered dict everytime
         """
-        if self.pq.myHeap:
 
-            min_node = self.pq.remove_min()
+        try:
+            if self.pq.myHeap:
 
-            for neighbour, weight in graph[min_node.label].items():
-                # I need to check if neighbour exists in location dict
-                # because I am constantly deleting and updating the
-                # location. I use location and not heap because heap
-                # stores obj's
+                min_node = self.pq.remove_min()
 
-                # This also ensures that I don't check the neighbour if
-                # it was already deleted from the queue (in other words; if
-                # the edge already made it to result)
-                if neighbour in self.pq.location:
-                    if weight < self.pq.myHeap[self.pq.location[neighbour]].data:
-                        self.pq.update(neighbour, weight)
-                        self.discovered[neighbour] = min_node.label
+                for neighbour, weight in graph[min_node.label].items():
+                    # check if the neighbour is in the heap
+                    if neighbour in self.pq.location:
+                        if weight < self.pq.myHeap[self.pq.location[neighbour]].data:
+                            self.pq.update(neighbour, weight)
+                            self.discovered[neighbour] = min_node.label
 
-            edge = '{0} -> {1}'.format(self.discovered[min_node.label],
-                                       min_node.label)
-            self.res.append(edge)
-            self.prim(graph)
+                edge = '{0} -> {1}'.format(self.discovered[min_node.label],
+                                           min_node.label)
+                self.res.append(edge)
+                self.prim(graph)
+        except Exception as ex:
+            print ex
 
     def main(self, graph, start='A'):
         """

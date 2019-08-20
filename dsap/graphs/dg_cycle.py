@@ -13,10 +13,13 @@ class DirectedGraphCycle(object):
            neighbours. After visiting all its neighbours( or if the
            vertex has no neighbours) remove the vertex from grey
            set
-        2) if the vertex is grey, it means there is a cycle
+        2) if a vertex is in grey set, then it means there is a cycle
 
     We also maintain a visited dict, which will help in printing
     the cycle (if it exists)
+
+    Note: vertices must be removed from grey set after the control explores
+          all possible options, else this algorithm won't work.
 
     Note: We can't use a simple dfs to detect a cycle in directed
           graph for the following reason(example):
@@ -89,6 +92,7 @@ class DirectedGraphCycle(object):
                 for neighbour in graph[vertex]:
                     self.dfs(neighbour, white, grey, graph, prev=vertex, visited=visited)
 
+            # Note: This step is important (see the explanation above)
             grey.discard(vertex)
         elif vertex in grey:
             print self.print_cycle(vertex, visited)
