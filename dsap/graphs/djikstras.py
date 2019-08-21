@@ -7,10 +7,10 @@ class Djikstraks(object):
     Goal is to find single source shortest path
     to all the other vertices
 
-    Its exactly same as prims algorithm. The only difference is
+    Its exactly same as prim's algorithm. The only difference is
     when we calculate the distance to a vertex, its the some of
-    the distance of min vertex to the neighbour and source vertex
-    to min vertex
+    the distance between min vertex -> neighbour and source
+    vertex -> min vertex
 
     """
 

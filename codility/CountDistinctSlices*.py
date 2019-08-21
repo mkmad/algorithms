@@ -62,7 +62,18 @@ class CountDistinctSlices(object):
 
     Note: pretty straightforward, use caterpillar method. The number of
           distinct slices of a sub array is the addition of (end_index - start_index + 1)
-          for every value of end_index
+          for every value of end_index.
+
+          caterpillar method is implemented using two pointers, front and back. Keep
+          moving front until to see an element that's already in the slice, when you
+          encounter a non distinct element, move the back one position ahead of all the
+          element that's same as the element that front is pointing to and then continue
+          moving front forward
+
+          A boolean is also maintained to check if the number that the font is pointing
+          to is repeated or not. When we move the back pointer, then unset the values
+          in the array
+
     """
 
     @staticmethod
