@@ -75,8 +75,10 @@ class SemiPrimes(object):
         # from 2 (the first prime number)
         start = 2
 
-        # This var keeps tracks of the number
-        # of prime numbers between 2 and num
+        # siev array stores the boolean array has a 1
+        # if the number (represented by the index) is a
+        # prime number else it set to 0, thats whats
+        # done in the loop below
 
         for i in range(start, num + 1):
             idx = i * i

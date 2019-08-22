@@ -15,6 +15,9 @@ class Denominator(object):
     The denominator of A is 3 because it occurs in 5 out of 8 elements of A
     (namely in those with indices 0, 2, 4, 6 and 7) and 5 is more than a half of 8.
 
+    The trick is to do it in O(1) space, see below:
+
+
     Write a function
 
     def solution(A)
