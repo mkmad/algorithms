@@ -19,7 +19,8 @@ class LIS(object):
     be max(res[i] + 1, res[j]). This basically keeps track 
     of all the elements that are less than element in ith 
     position, which will eventually result in an array of 
-    values with the length of lis at each position.
+    values with the length of lis at each position and also
+    ensuring LIS ( see explanation below )
 
     The reason for the above formula is consider i pointing
     to 6 in the input array then j will go through 3 and 4
