@@ -27,7 +27,7 @@ class LIS(object):
     thereby resulting in res[i] to be 3 and when j points to
     -1 in the input array then we can't blindly add 1 to res[i]
     even though input[i] > input[j]. This is because -1 does not
-    contribute to LIS as 4 (previous element) > -1
+    contribute to LIS because 4 (previous element) > -1
 
     """
 
