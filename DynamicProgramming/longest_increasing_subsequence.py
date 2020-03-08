@@ -8,12 +8,18 @@ class LIS(object):
 
     Sol:-
 
+    Initialize the result array with 1's. Since 
+    that's the min len of lis for a single element.
+
     Maintain two pointers i & j, i goes through
     the length of the array and j keeps iterating
     from 0 to i and finds out if the element in i is
     greater than the element in j, if it is then
     the value in the res array at the j'th position will
-    be max(res[i] + 1, res[j])
+    be max(res[i] + 1, res[j]). This basically keeps track 
+    of all the elements that are less than element in ith 
+    position, which will eventually result in an array of 
+    values with the length of lis at each position.
 
     The reason for the above formula is consider i pointing
     to 6 in the input array then j will go through 3 and 4
