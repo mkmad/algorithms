@@ -13,6 +13,23 @@ class PrimsMinimumSpaningTree(object):
     spanning tree) and move to that vertex and repeat the
     same
 
+    Note: A simple dfs won't work here because you need
+    to also consider the example:
+
+    a -> c = 4
+    a -> b = 5
+    c -> b = 1
+
+
+    so, instead of having a -> b in the spanning tree, you need
+    a -> c -> b
+
+
+    So, here the priority queue constantly keeps updating
+    the least distance to a node from various other nodes
+    and that might be helpful in adding the nodes to the
+    final tree
+
     flow:
     -----
 
@@ -101,8 +118,8 @@ class PrimsMinimumSpaningTree(object):
         """
         Remove the minimum weight vertex from the heap and check its
         neighbours. If the weight from the minimum vertex to its
-        neighbour is less than that of the neighbours, update the
-        neighbours weight.
+        neighbour is less than that of the neighbours existing weight,
+        update the neighbours weight.
 
         Also, update the discovered dict everytime
         """
@@ -115,6 +132,11 @@ class PrimsMinimumSpaningTree(object):
                 for neighbour, weight in graph[min_node.label].items():
                     # check if the neighbour is in the heap
                     if neighbour in self.pq.location:
+                        # see if the weight by going from the min node to the neighbour
+                        # is less then the weight thats already recorded. If it is
+                        # then just update the weight in pq and update the discovery
+                        # dict, no need to check for combined weight i.e. if A -> B -> C < A -> C.
+                        # This is just to calculate the minimum spanning tree.
                         if weight < self.pq.myHeap[self.pq.location[neighbour]].data:
                             self.pq.update(neighbour, weight)
                             self.discovered[neighbour] = min_node.label

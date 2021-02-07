@@ -55,6 +55,9 @@ class DirectedGraphCycle(object):
           we remove 'B' and ultimately 'A' because 'A' explored all
           its neighbours. The code exists (no cycle)
 
+    Note: All the vertices in the grey will be directed in the same
+          direction. This helps with the case mentioned above
+
     """
 
     def detect_cycle(self, white, grey, graph):
