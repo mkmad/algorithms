@@ -117,6 +117,11 @@ def count_set_bits(n):
     count = 2
 
     Since n = 0, return count which is 2 now.
+    
+    Insight: The difference between a number and number + 1 is adding that +1. 
+    So, it oly makes sense to get a result of n & (n - 1) which is a value 
+    where the additional 1 bit would have been set when adding 1 to (n - 1)
+    
     """
     count = 0
     while n:
